@@ -30,10 +30,12 @@ const showImages = (images) => {
 
 const getImages = (query) => {
   toggleSpinner();
-  fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
+  setTimeout(() => {
+    fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
     .catch(err => console.log(err))
+  }, 2000);
 }
 
 let slideIndex = 0;
@@ -41,11 +43,17 @@ const selectItem = (event, img) => {
   let element = event.target;
   element.classList.toggle('added'); 
   let item = sliders.indexOf(img);
+  let imageCount = document.getElementById('imageSelect').innerText;
+  let Count = parseInt(imageCount);
   if (item === -1) {
     sliders.push(img);
+    Count++;
+    document.getElementById('imageSelect').innerText = Count;
   }
-  else if(item !== -1) {
+  else if (item !== -1) {
     sliders.pop(img)
+    Count--;
+    document.getElementById('imageSelect').innerText = Count;
   }
 }
 var timer
