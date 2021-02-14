@@ -138,8 +138,10 @@ document.getElementById('search').addEventListener('keypress', (event) => {
 
 sliderBtn.addEventListener('click', function () {
   createSlider()
+  const imageItem = document.getElementById('imageSelect').innerText = '0';
 })
 
+// added a toggle spinner
 const toggleSpinner = () => {
   const spinner = document.getElementById('load-spinner');
   spinner.classList.toggle('d-none')
